@@ -1,4 +1,4 @@
-package org.example.operators.airthmetic;
+package org.java.operators.airthmetic;
 
 public class DivisionOperator {
 //    4. Division(/): This is a binary operator that is used to divide the first operand(dividend) by the second operand(divisor) and give the quotient as a result.

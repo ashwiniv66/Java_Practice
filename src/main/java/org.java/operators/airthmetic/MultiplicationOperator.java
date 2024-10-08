@@ -1,4 +1,4 @@
-package org.example.operators.airthmetic;
+package org.java.operators.airthmetic;
 
 public class MultiplicationOperator {
 //    3. Multiplication(*): This operator is a binary operator and is used to multiply two operands.

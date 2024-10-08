@@ -1,4 +1,4 @@
-package org.example.operators.airthmetic;
+package org.java.operators.airthmetic;
 
 public class ModulusOperator {
 //    5. Modulus(%): This is a binary operator that is used to return the remainder when the first operand(dividend) is divided by the second operand(divisor).

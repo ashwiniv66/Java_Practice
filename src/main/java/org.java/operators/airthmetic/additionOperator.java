@@ -1,4 +1,4 @@
-package org.example.operators.airthmetic;
+package org.java.operators.airthmetic;
 
 public class additionOperator {
 //    1. Addition(+): This operator is a binary operator and is used to add two operands.

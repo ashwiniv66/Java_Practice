@@ -1,4 +1,4 @@
-package org.example.operators.airthmetic;
+package org.java.operators.airthmetic;
 
 public class SubtractionOperator {
     public static void main(String[] args) {
