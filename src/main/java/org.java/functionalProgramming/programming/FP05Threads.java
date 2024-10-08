@@ -1,4 +1,4 @@
-package org.example.functionalProgramming.programming;
+package org.java.functionalProgramming.programming;
 
 public class FP05Threads {
 

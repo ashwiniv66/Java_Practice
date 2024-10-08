@@ -1,4 +1,4 @@
-package org.example.functionalProgramming.programming;
+package org.java.functionalProgramming.programming;
 
 import java.util.Comparator;
 import java.util.List;
