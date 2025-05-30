@@ -1,7 +1,7 @@
 package org.java.Functionalnterface.Predicate;
 
 import java.util.function.Predicate;
-
+// Predicate<T> ---> boolean
 class Employee{
 
     String name;
