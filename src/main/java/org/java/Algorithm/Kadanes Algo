@@ -1,0 +1,151 @@
+function kadane(array A):
+    max_so_far = A[0]
+    current_max = A[0]
+
+    for i from 1 to length(A) - 1:
+        current_max = max(A[i], current_max + A[i])
+        max_so_far = max(max_so_far, current_max)
+
+    return max_so_far
+***********************************************************************************************************
+    Kadane's Algorithm, which is an optimized approach for solving the maximum subarray sum problem.
+
+    ### Kadane's Algorithm
+
+    * **Example:**
+
+        Consider the array `nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]`.
+
+        We maintain two variables:
+        * `current_max`: The maximum sum of a subarray ending at the current position.
+        * `global_max`: The maximum sum of any subarray found so far.
+
+        1.  Initialize `current_max = nums[0]` and `global_max = nums[0]`. (For `nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]`, initially `current_max = -2`, `global_max = -2`).
+
+        2.  Iterate through the array starting from the second element:
+
+            * **For `nums[1] = 1`:**
+                * `current_max = max(1, -2 + 1) = max(1, -1) = 1`
+                * `global_max = max(-2, 1) = 1`
+
+            * **For `nums[2] = -3`:**
+                * `current_max = max(-3, 1 + -3) = max(-3, -2) = -2`
+                * `global_max = max(1, -2) = 1`
+
+            * **For `nums[3] = 4`:**
+                * `current_max = max(4, -2 + 4) = max(4, 2) = 4`
+                * `global_max = max(1, 4) = 4`
+
+            * **For `nums[4] = -1`:**
+                * `current_max = max(-1, 4 + -1) = max(-1, 3) = 3`
+                * `global_max = max(4, 3) = 4`
+
+            * **For `nums[5] = 2`:**
+                * `current_max = max(2, 3 + 2) = max(2, 5) = 5`
+                * `global_max = max(4, 5) = 5`
+
+            * **For `nums[6] = 1`:**
+                * `current_max = max(1, 5 + 1) = max(1, 6) = 6`
+                * `global_max = max(5, 6) = 6`
+
+            * **For `nums[7] = -5`:**
+                * `current_max = max(-5, 6 + -5) = max(-5, 1) = 1`
+                * `global_max = max(6, 1) = 6`
+
+            * **For `nums[8] = 4`:**
+                * `current_max = max(4, 1 + 4) = max(4, 5) = 5`
+                * `global_max = max(6, 5) = 6`
+
+        The final `global_max` is `6`. The subarray `[4, -1, 2, 1]` has the largest sum.
+
+    * **Syntax (Conceptual):**
+
+        Kadane's Algorithm can be expressed with a simple loop:
+
+        ```
+        function kadane(array A):
+            max_so_far = A[0]
+            current_max = A[0]
+
+            for i from 1 to length(A) - 1:
+                current_max = max(A[i], current_max + A[i])
+                max_so_far = max(max_so_far, current_max)
+
+            return max_so_far
+        ```
+
+        **Detailed Java Implementation:**
+
+        ```java
+        public class KadanesAlgorithm {
+
+            /**
+             * Implements Kadane's Algorithm to find the maximum sum of a contiguous subarray.
+             *
+             * @param nums The input array of integers.
+             * @return The maximum sum found.
+             */
+            public int maxSubArray(int[] nums) {
+                // Handle edge case for an empty or null array, though typical problem constraints
+                // for max subarray sum usually state array has at least one element.
+                if (nums == null || nums.length == 0) {
+                    // Or throw an IllegalArgumentException based on requirements
+                    return 0; // Or Integer.MIN_VALUE if all numbers could be negative and 0 is not valid
+                }
+
+                // Initialize current_max to the first element.
+                // This represents the maximum sum of a subarray ending at the current position.
+                int currentMax = nums[0];
+
+                // Initialize global_max to the first element.
+                // This represents the overall maximum sum found so far across all subarrays.
+                int globalMax = nums[0];
+
+                // Iterate through the array starting from the second element.
+                // For each element, decide whether to extend the current subarray
+                // or start a new one from the current element.
+                for (int i = 1; i < nums.length; i++) {
+                    // The current maximum sum ending at 'i' is either:
+                    // 1. The current element itself (starting a new subarray).
+                    // 2. The current element added to the currentMax from the previous step
+                    //    (extending the existing subarray).
+                    currentMax = Math.max(nums[i], currentMax + nums[i]);
+
+                    // Update the overall maximum sum found if 'currentMax' is greater.
+                    globalMax = Math.max(globalMax, currentMax);
+                }
+
+                return globalMax;
+            }
+
+            public static void main(String[] args) {
+                KadanesAlgorithm solver = new KadanesAlgorithm();
+
+                int[] arr1 = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+                System.out.println("Max subarray sum for " + java.util.Arrays.toString(arr1) + " is: " + solver.maxSubArray(arr1)); // Expected: 6
+
+                int[] arr2 = {1};
+                System.out.println("Max subarray sum for " + java.util.Arrays.toString(arr2) + " is: " + solver.maxSubArray(arr2)); // Expected: 1
+
+                int[] arr3 = {5, 4, -1, 7, 8};
+                System.out.println("Max subarray sum for " + java.util.Arrays.toString(arr3) + " is: " + solver.maxSubArray(arr3)); // Expected: 23
+
+                int[] arr4 = {-1, -2, -3, -4};
+                System.out.println("Max subarray sum for " + java.util.Arrays.toString(arr4) + " is: " + solver.maxSubArray(arr4)); // Expected: -1 (largest single negative number)
+
+                int[] arr5 = {1, -2, 3, 4, -5, 6};
+                System.out.println("Max subarray sum for " + java.util.Arrays.toString(arr5) + " is: " + solver.maxSubArray(arr5)); // Expected: 8
+            }
+        }
+        ```
+
+    * **Scenario where it can be used:**
+
+        Kadane's Algorithm is a dynamic programming approach that excels in situations where you need to find the maximum (or minimum, with slight modification) sum of a **contiguous** sequence within a larger sequence. Its efficiency ($O(N)$ time complexity and $O(1)$ space complexity) makes it suitable for:
+
+        1.  **Profit Maximization:** Calculating the maximum profit one could make by buying and selling a stock once, given a list of stock prices over days. (Convert prices to daily changes, then apply Kadane's).
+        2.  **Resource Allocation:** In scenarios where resources (e.g., CPU cycles, memory) are allocated in contiguous blocks, and you want to find the block that maximizes a certain metric.
+        3.  **Data Analysis:** Identifying trends or "hot spots" in time-series data or linear arrays where the sum of values within a contiguous segment is a meaningful metric.
+        4.  **Signal Processing:** Locating segments of a signal that exhibit the highest intensity or accumulation.
+        5.  **Game Development:** In some game mechanics, calculating optimal paths or scores based on contiguous segments of game elements.
+        6.  **Extension to 2D Problems:** While Kadane's is 1D, it forms the basis for solving the "maximum sum submatrix" problem in 2D arrays, by reducing the 2D problem into multiple 1D problems that can then be solved using Kadane's.
